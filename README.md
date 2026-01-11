@@ -43,3 +43,45 @@ Contains **pure data models** used across the application.
 - **OCP**: Models can be extended without modifying dependent code
 
 ---
+
+## 📁 state/
+
+### Purpose
+Manages **global application state**.
+
+### Why it exists
+- Avoids passing data manually between components
+- Decouples UI from data storage logic
+
+### What it contains
+- `project-state.ts` – Concrete state management
+- `project-state.interface.ts` – State abstraction
+
+### SOLID Principles
+- **SRP**: Handles only state logic
+- **DIP**: UI depends on state interfaces, not implementations
+- **OCP**: State can be replaced (API, DB) without changing UI
+
+---
+
+## 📁 ui/
+
+### Purpose
+Contains all **UI components**.
+
+### Why it exists
+- Separates DOM logic from business logic
+- Improves reusability and readability
+
+### What it contains
+- `component.ts` – Base abstract UI component
+- `project-input.ts` – User input handling
+- `project-list.ts` – Project list rendering
+- `project-item.ts` – Individual project rendering
+
+### SOLID Principles
+- **SRP**: Each component has one UI responsibility
+- **LSP**: Components safely extend the base component
+- **OCP**: New UI components can be added without modifying existing ones
+
+---
