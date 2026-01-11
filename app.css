@@ -1,101 +1,160 @@
+/* =====================
+   GLOBAL RESET
+===================== */
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 body {
   margin: 0;
+  background: linear-gradient(120deg, #fdfbfb, #ebedee);
+  min-height: 100vh;
 }
 
-label,
-input,
-textarea {
-  display: block;
-  margin: 0.5rem 0;
+/* =====================
+   APP LAYOUT
+===================== */
+.app-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* =====================
+   FORM STYLING
+===================== */
+#user-input {
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: none;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+}
+
+.form-control {
+  margin-bottom: 1rem;
 }
 
 label {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 input,
 textarea {
   font: inherit;
-  padding: 0.2rem 0.4rem;
+  padding: 0.6rem;
   width: 100%;
-  max-width: 30rem;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  transition: border 0.2s, box-shadow 0.2s;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  background: #fff5f9;
+  border-color: #ff0062;
+  box-shadow: 0 0 0 2px rgba(255, 0, 98, 0.2);
 }
 
+/* =====================
+   BUTTON
+===================== */
 button {
+  width: 100%;
   font: inherit;
-  background: #ff0062;
-  border: 1px solid #ff0062;
+  background: linear-gradient(135deg, #ff0062, #ff4d94);
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
   color: white;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-button:focus {
-  outline: none;
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 0, 98, 0.3);
 }
 
-button:hover,
 button:active {
-  background: #a80041;
-  border-color: #a80041;
+  transform: scale(0.97);
 }
 
+/* =====================
+   PROJECT LISTS
+===================== */
 .projects {
   margin: 1rem;
-  border: 1px solid #ff0062;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.projects:hover {
+  transform: translateY(-3px);
 }
 
 .projects header {
-  background: #ff0062;
   height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#finished-projects {
-  border-color: #0044ff;
-}
-
-#finished-projects header {
-  background: #0044ff;
-}
-
-.projects h2 {
-  margin: 0;
   color: white;
+  font-weight: bold;
+}
+
+/* Active projects */
+#active-projects header {
+  background: linear-gradient(135deg, #ff0062, #ff4d94);
+}
+
+/* Finished projects */
+#finished-projects header {
+  background: linear-gradient(135deg, #0044ff, #4d79ff);
 }
 
 .projects ul {
   list-style: none;
   margin: 0;
   padding: 1rem;
+  min-height: 200px;
 }
 
+/* =====================
+   PROJECT CARD
+===================== */
 .projects li {
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
+  background: white;
+  border-radius: 10px;
   padding: 1rem;
-  margin: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  cursor: grab;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.projects li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.projects li:active {
+  cursor: grabbing;
+  transform: scale(0.98);
 }
 
 .projects li h2 {
+  margin: 0.3rem 0;
   color: #ff0062;
-  margin: 0.5rem 0;
 }
 
 #finished-projects li h2 {
@@ -103,25 +162,48 @@ button:active {
 }
 
 .projects li h3 {
-  color: #575757;
-  font-size: 1rem;
-}
-
-.project li p {
   margin: 0;
+  font-size: 0.95rem;
+  color: #666;
 }
 
+.projects li p {
+  margin-top: 0.5rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* =====================
+   DRAG & DROP EFFECTS
+===================== */
 .droppable {
-  background: #ffe3ee;
+  background: rgba(255, 0, 98, 0.08);
+  border: 2px dashed #ff0062;
+  transition: background 0.3s ease;
 }
 
 #finished-projects .droppable {
-  background: #d6e1ff;
+  background: rgba(0, 68, 255, 0.1);
+  border-color: #0044ff;
 }
 
-#user-input {
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #ff0062;
-  background: #f7f7f7;
+/* =====================
+   RESPONSIVE
+===================== */
+@media (min-width: 768px) {
+  .projects {
+    width: 48%;
+  }
+
+  #app {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .projects {
+    width: 100%;
+  }
 }
