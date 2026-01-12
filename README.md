@@ -85,3 +85,67 @@ Contains all **UI components**.
 - **OCP**: New UI components can be added without modifying existing ones
 
 ---
+
+## 📁 drag-drop/
+
+### Purpose
+Abstracts **Drag & Drop behavior**.
+
+### Why it exists
+- Prevents duplication of drag-drop logic
+- Makes behavior reusable and independent of UI
+
+### What it contains
+- `draggable.ts` – Draggable interface
+- `drag-target.ts` – Drop target interface
+
+### SOLID Principles
+- **ISP**: Small, focused interfaces
+- **DIP**: UI depends on abstractions, not concrete behavior
+
+---
+
+## 📁 validation/
+
+### Purpose
+Centralizes **input validation logic**.
+
+### Why it exists
+- Keeps validation out of UI components
+- Makes validation rules reusable
+
+### What it contains
+- `validator.ts` – Core validation logic
+- `validation-rules.ts` – Validation rule definitions
+
+### SOLID Principles
+- **SRP**: Validation logic is isolated
+- **OCP**: New rules can be added without modifying existing code
+
+---
+
+## 📁 app.ts
+
+### Purpose
+Application **entry point**.
+
+### Why it exists
+- Bootstraps the application
+- Wires together high-level modules
+
+### SOLID Principles
+- **DIP**: High-level modules depend on abstractions
+
+---
+
+## ✅ SOLID Principles Summary
+
+| Principle | Implementation |
+|---------|----------------|
+| SRP | Each folder/file has one responsibility |
+| OCP | Features added by extension |
+| LSP | Base components are safely extendable |
+| ISP | Small, focused interfaces |
+| DIP | UI depends on abstractions |
+
+---
